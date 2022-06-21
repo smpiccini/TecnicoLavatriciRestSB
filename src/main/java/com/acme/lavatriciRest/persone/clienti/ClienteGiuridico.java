@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 @Entity
-@Table (name = " ClienteGiuridicoo")
+@Table (name = "cliente_giuridico")
 public class ClienteGiuridico extends ClienteImp {
 
 	private String codiceFiscale;
