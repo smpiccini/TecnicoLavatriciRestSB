@@ -1,41 +1,23 @@
 package com.acme.lavatriciRest.rapportino;
 
+import com.acme.lavatriciRest.persone.clienti.ClienteImp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+public interface Rapportino {
 
-import com.acme.lavatriciRest.interventi.InterventoImp;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+	String getDataRapportino();
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+	long getId();
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "rapportini")
-@Entity
-public class Rapportino {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private long id;
-	private String numeroSeriale;
-	private String dataRapportino;
-	
-	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
-	@JsonIgnoreProperties({"interventi"})
-	@ManyToOne
-	private InterventoImp intervento;
-	
-	
+	ClienteImp getCliente();
+
+	String getNumeroSeriale();
+
+	void setDataRapportino(String dataRapportino);
+
+	void setId(long id);
+
+	void setCliente(ClienteImp cliente);
+
+	void setNumeroSeriale(String numeroSeriale);
 
 }

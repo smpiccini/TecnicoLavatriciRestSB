@@ -9,14 +9,19 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+
 @Entity
-@Table (name = "cliente_giuridico")
+@Table (name = "clienti_giuridici")
 public class ClienteGiuridico extends ClienteImp {
 
 	private String partitaIva;

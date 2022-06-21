@@ -2,11 +2,11 @@ package com.acme.lavatriciRest.persone;
 
 public interface Persona {
 
-	boolean equals(java.lang.Object o);
-
 	long getId();
 
 	String getNome();
+	
+	String getCognome();
 
 	void setCognome(String cognome);
 

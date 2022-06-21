@@ -5,6 +5,7 @@ import javax.persistence.Table;
 
 import com.acme.lavatriciRest.interventi.InterventoImp;
 import com.acme.lavatriciRest.persone.Tecnico.Tecnico;
+import com.acme.lavatriciRest.rapportino.RapportinoImp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,8 +18,8 @@ import lombok.NoArgsConstructor;
 public class Sostituzione extends InterventoImp {
  private int numeroPezzi;
 
-	public Sostituzione(long id, String descrizione, double prezzo, String dataIntervento, Tecnico tecnico, int numeroPezzi) {
-		super(id, descrizione, prezzo, dataIntervento, tecnico);
+	public Sostituzione(long id, String descrizione, double prezzo, String dataIntervento, Tecnico tecnico, RapportinoImp rapportino, int numeroPezzi) {
+		super(id, descrizione, prezzo, dataIntervento, tecnico, rapportino);
 		this.numeroPezzi=numeroPezzi;
 
 	}
