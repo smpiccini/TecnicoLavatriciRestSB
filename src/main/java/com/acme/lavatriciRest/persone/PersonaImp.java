@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "Persone")
+@Table(name = "persone")
 public abstract class  PersonaImp implements Persona {
 	@Id
 	@GeneratedValue(strategy =GenerationType.SEQUENCE )
