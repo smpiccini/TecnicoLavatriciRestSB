@@ -9,10 +9,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.acme.lavatriciRest.persone.Tecnico.Tecnico;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
@@ -31,6 +34,9 @@ public class InterventoImp implements Intervento {
 	@Column(length = 30, nullable = false)
 	private String dataIntervento;
 	
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
+	@JsonIgnoreProperties({"interventi"})
 	@ManyToOne
 	private Tecnico tecnico;
 
