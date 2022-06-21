@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Table(name = " Tecnici")
+@Table(name = " tecnici")
 public class Tecnico extends PersonaImp {
 
 }
