@@ -14,6 +14,9 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = " tecnici")
-public class Tecnico extends PersonaImp {
+public class Tecnico extends PersonaImp {public Tecnico(long id, String nome, String cognome) {
+		super(id, nome, cognome);
+
+	}
 
 }

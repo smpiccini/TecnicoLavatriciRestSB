@@ -21,6 +21,6 @@ public abstract class  PersonaImp implements Persona {
 	@GeneratedValue(strategy =GenerationType.SEQUENCE )
 	private long id;
 	private String nome;
-	private String congnome;
+	private String cognome;
 	
 }	
