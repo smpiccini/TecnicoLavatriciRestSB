@@ -19,4 +19,9 @@ import lombok.NoArgsConstructor;
 public class ClienteFisico extends ClienteImp {
 	private String codiceFiscale;
 	
+	public ClienteFisico(long id, String nome, String cognome, String codiceFiscale) {
+		super(id, nome, cognome);
+		this.codiceFiscale = codiceFiscale;
+	}
+	
 }

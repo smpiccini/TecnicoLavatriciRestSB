@@ -19,5 +19,12 @@ import lombok.NoArgsConstructor;
 @Table (name = "cliente_giuridico")
 public class ClienteGiuridico extends ClienteImp {
 
-	private String codiceFiscale;
+	private String partitaIva;
+	
+	public ClienteGiuridico(long id, String nome, String cognome, String partitaIva) {
+		super(id, nome, cognome);
+		this.partitaIva = partitaIva;
+	}
 }
+
+
