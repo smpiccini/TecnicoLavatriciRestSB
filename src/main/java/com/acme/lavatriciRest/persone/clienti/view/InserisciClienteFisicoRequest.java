@@ -7,11 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class InserisciClienteRequest {
+public class InserisciClienteFisicoRequest {
 
 	private String nome;
 	private String cognome;
 	private String codiceFiscale;
-	private String partitaIva;
 
 }
