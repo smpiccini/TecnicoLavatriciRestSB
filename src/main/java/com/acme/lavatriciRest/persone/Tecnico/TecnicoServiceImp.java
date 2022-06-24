@@ -1,10 +1,11 @@
 package com.acme.lavatriciRest.persone.Tecnico;
 
-import java.util.Optional;
+
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
+
 
 public class TecnicoServiceImp implements TecnicoService{
 
@@ -18,8 +19,8 @@ public class TecnicoServiceImp implements TecnicoService{
 	public Tecnico inserisciTecnico(@RequestBody InserisciTecnicoRequest dto) {
 		Tecnico tec;
 		
-		if(tecnicoRepository.existByNomeECognome(dto.getNome(), dto.getCognome())) {
-			tec = tecnicoRepository.findByNomeECognome(dto.getNome(), dto.getCognome());
+		if(tecnicoRepository.existsByNome(dto.getNome())) {
+			tec = tecnicoRepository.findByNome(dto.getNome());
 		}else {
 			
 			tec = new Tecnico();

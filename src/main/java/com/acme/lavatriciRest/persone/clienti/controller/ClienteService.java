@@ -7,4 +7,6 @@ import com.acme.lavatriciRest.persone.clienti.view.InserisciClienteGiuridicoRequ
 public interface ClienteService {
 	ClienteImp inserisciCliente(InserisciClienteFisicoRequest dto);
 	ClienteImp inserisciCliente(InserisciClienteGiuridicoRequest dto);
+	
+	ClienteImp getClienteFisico(InserisciClienteFisicoRequest dto);
 }

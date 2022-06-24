@@ -1,7 +1,9 @@
 package com.acme.lavatriciRest.persone.clienti.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.acme.lavatriciRest.persone.clienti.ClienteFisico;
@@ -25,18 +27,38 @@ public class ClienteServiceImp implements ClienteService {
 	
 	@Override
 	public ClienteImp inserisciCliente(InserisciClienteFisicoRequest dto) {
-		ClienteFisico cli = new ClienteFisico();
-		BeanUtils.copyProperties(dto, cli);
-		clienteFisicoRepo.save(cli);
-		
+		ClienteFisico cli;
+		if(clienteFisicoRepo.existsByCodiceFiscale(dto.getCodiceFiscale())) {
+			cli = (ClienteFisico) clienteFisicoRepo.findByCodiceFiscale(dto.getCodiceFiscale());
+		}else {
+			
+			cli = new ClienteFisico();
+			
+			BeanUtils.copyProperties(dto, cli);
+			clienteFisicoRepo.save(cli);
+		}
 		return cli;
 	}
 	
 	public ClienteImp inserisciCliente(InserisciClienteGiuridicoRequest dto) {
-		ClienteGiuridico cli = new ClienteGiuridico();
-		BeanUtils.copyProperties(dto, cli);
-		clienteGiuridicoRepo.save(cli);
-		
+		ClienteGiuridico cli;
+		if(clienteGiuridicoRepo.existsByPartitaIva(dto.getPartitaIva())) {
+			cli = (ClienteGiuridico) clienteGiuridicoRepo.findByPartitaIva(dto.getPartitaIva());
+		}else {
+			
+			cli = new ClienteGiuridico();
+			
+			BeanUtils.copyProperties(dto, cli);
+			clienteGiuridicoRepo.save(cli);
+		}
+		return cli;
+	}
+	
+	public ClienteImp getClienteFisico(InserisciClienteFisicoRequest dto) {
+		ClienteImp cli = null;
+		if(clienteFisicoRepo.existsByCodiceFiscale(dto.getCodiceFiscale())) {
+			cli = clienteFisicoRepo.findByCodiceFiscale(dto.getCodiceFiscale());
+		}
 		return cli;
 	}
 
