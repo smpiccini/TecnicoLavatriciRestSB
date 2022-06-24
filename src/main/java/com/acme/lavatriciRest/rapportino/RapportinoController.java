@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.acme.lavatriciRest.interventi.InterventoRepository;
 import com.acme.lavatriciRest.persone.Tecnico.TecnicoRepository;
 import com.acme.lavatriciRest.persone.clienti.ClienteFisicoRepository;
 import com.acme.lavatriciRest.persone.clienti.ClienteGiuridicoRepository;
@@ -27,8 +26,6 @@ public class RapportinoController {
 	private TecnicoRepository TecnicoRepo;
 	*/
 	
-	@Autowired
-	private InterventoRepository InterventoRepo;
 	
 	@Autowired
 	private RapportinoRepository RapportinoRepo;
@@ -37,7 +34,7 @@ public class RapportinoController {
 	RapportinoService rapportinoService;
 	
 	
-	@PostMapping
+	@PostMapping("/onlyfans")
 	public ResponseEntity<?> inserisciSoloRapportino(@RequestBody InserisciSoloRapportinoRequest dto) {
 		rapportinoService.inserisciSoloRapportino(dto);
 		return ResponseEntity.ok("Rapportino salavto");
