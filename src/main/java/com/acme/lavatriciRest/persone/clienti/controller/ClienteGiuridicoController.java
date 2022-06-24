@@ -7,23 +7,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.acme.lavatriciRest.persone.clienti.ClienteFisicoRepository;
-import com.acme.lavatriciRest.persone.clienti.ClienteGiuridicoRepository;
-import com.acme.lavatriciRest.persone.clienti.view.InserisciClienteFisicoRequest;
+import com.acme.lavatriciRest.persone.clienti.view.InserisciClienteGiuridicoRequest;
 
-//TODO: suddividi i controller
 @RestController
-@RequestMapping("/clienti")
-public class ClienteController {
+@RequestMapping("/clientiGiuridici")
+public class ClienteGiuridicoController {
 	@Autowired
 	private ClienteService clienteService;
 	
 	@PostMapping
 	public ResponseEntity<?> inserisciCliente
-		(@RequestBody InserisciClienteFisicoRequest dto) {
+		(@RequestBody InserisciClienteGiuridicoRequest dto) {
 		clienteService.inserisciCliente(dto);
 		
-		return ResponseEntity.ok("Cliente fisico aggiunto.");
+		return ResponseEntity.ok("Cliente giuridico aggiunto.");
 	}
-
 }
