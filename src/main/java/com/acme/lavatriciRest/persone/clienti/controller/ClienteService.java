@@ -9,4 +9,5 @@ public interface ClienteService {
 	ClienteImp inserisciCliente(InserisciClienteGiuridicoRequest dto);
 	
 	ClienteImp getClienteFisico(InserisciClienteFisicoRequest dto);
+	ClienteImp getClienteGiuridico(InserisciClienteGiuridicoRequest dto);
 }

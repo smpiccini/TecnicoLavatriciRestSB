@@ -62,4 +62,13 @@ public class ClienteServiceImp implements ClienteService {
 		return cli;
 	}
 
+	@Override
+	public ClienteImp getClienteGiuridico(InserisciClienteGiuridicoRequest dto) {
+		ClienteImp cli = null;
+		if(clienteGiuridicoRepo.existsByPartitaIva(dto.getPartitaIva())) {
+			cli = clienteGiuridicoRepo.findByPartitaIva(dto.getPartitaIva());
+		}
+		return cli;
+	}
+
 }
