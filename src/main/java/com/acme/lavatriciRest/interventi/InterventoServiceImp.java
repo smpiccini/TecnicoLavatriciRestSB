@@ -67,6 +67,7 @@ public class InterventoServiceImp implements InterventoService {
 		BeanUtils.copyProperties(dto, rip);
 		rip.setTecnico(tc);
 		riparazioneRepo.save(rip);
+		tc.getInterventi().add(rip);
 		return rip;
 	}
 
@@ -80,6 +81,7 @@ public class InterventoServiceImp implements InterventoService {
 		BeanUtils.copyProperties(dto, ver);
 		ver.setTecnico(tc);
 		verificaRepo.save(ver);
+		tc.getInterventi().add(ver);
 		return ver;
 	}
 
@@ -93,7 +95,7 @@ public class InterventoServiceImp implements InterventoService {
 		BeanUtils.copyProperties(dto, sos);
 		sos.setTecnico(tc);
 		sostituzioneRepo.save(sos);
-		//tc.getInterventi().add(sos);
+		tc.getInterventi().add(sos);
 		return sos;
 	}
 	

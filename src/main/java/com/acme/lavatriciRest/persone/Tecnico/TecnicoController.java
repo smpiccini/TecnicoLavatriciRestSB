@@ -28,7 +28,7 @@ public class TecnicoController {
 		status = HttpStatus.OK;
 	}
 	InserisciTecnicoResponse resp = new InserisciTecnicoResponse();
-	resp.setIdTecnico(resp.getIdTecnico());
+	resp.setIdTecnico(tc.getId());
 	return new ResponseEntity(resp, status);
 }
 	/*
