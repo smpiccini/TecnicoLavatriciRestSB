@@ -1,4 +1,4 @@
-package com.acme.lavatriciRest.interventi.riparazioni;
+package com.acme.lavatriciRest.interventi.sostituzioni;
 
 import javax.persistence.Column;
 
@@ -8,13 +8,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class InserisciRiparazioneRequeste {
+public class InserisciSoloSostituzioneRequeste {
 	private String descrizione;
 	private double prezzo;
 	private String dataIntervento;
+	private int numeroPezzi;
+
 
 }

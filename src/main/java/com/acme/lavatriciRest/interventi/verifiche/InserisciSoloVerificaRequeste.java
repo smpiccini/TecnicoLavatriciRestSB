@@ -1,4 +1,4 @@
-package com.acme.lavatriciRest.interventi.sostituzioni;
+package com.acme.lavatriciRest.interventi.verifiche;
 
 import javax.persistence.Column;
 
@@ -11,11 +11,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class InserisciSostituzioneRequeste {
+public class InserisciSoloVerificaRequeste {
 	private String descrizione;
 	private double prezzo;
 	private String dataIntervento;
-	private int numeroPezzi;
-
 
 }

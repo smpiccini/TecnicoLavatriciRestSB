@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class InserisciTecnicoRequest {
 
-	private long id;
+	private String matricola;
 	private String nome;
 	private String cognome;
 	private String dataIntervento;

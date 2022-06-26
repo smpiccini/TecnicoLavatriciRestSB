@@ -1,5 +1,6 @@
 package com.acme.lavatriciRest.persone.Tecnico;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -24,13 +25,15 @@ import lombok.ToString;
 @Entity
 @Table(name = " tecnici")
 public class Tecnico extends PersonaImp {
+	
+	private String matricola;
 
-	@ToString.Exclude
+	//@ToString.Exclude
 	@JsonIgnoreProperties({"tecnico"})
 	@OneToMany(mappedBy = "tecnico")
-	private List<InterventoImp> interventi;
+	private List<InterventoImp> interventi= new ArrayList<InterventoImp>();
 	
-	public Tecnico(long id, String nome, String cognome) {
+	public Tecnico(long id, String nome, String cognome, String matricola) {
 		super(id, nome, cognome);
 
 	}

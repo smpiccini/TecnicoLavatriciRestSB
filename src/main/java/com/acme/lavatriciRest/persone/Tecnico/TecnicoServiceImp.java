@@ -19,8 +19,8 @@ public class TecnicoServiceImp implements TecnicoService{
 	public Tecnico inserisciTecnico(@RequestBody InserisciTecnicoRequest dto) {
 		Tecnico tec;
 		
-		if(tecnicoRepository.existsByNome(dto.getNome())) {
-			tec = tecnicoRepository.findByNome(dto.getNome());
+		if(tecnicoRepository.existsByMatricola(dto.getMatricola())) {
+			tec = tecnicoRepository.findByMatricola(dto.getMatricola());
 		}else {
 			
 			tec = new Tecnico();

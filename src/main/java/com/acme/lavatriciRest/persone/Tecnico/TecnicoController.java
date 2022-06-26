@@ -35,8 +35,8 @@ public class TecnicoController {
 */
 	
 	@PostMapping
-	public ResponseEntity<String>  insertTecnico (@RequestBody Tecnico tecnico, String nome, String cognome) {
-		if(tecnicoRepository.existsByNome(nome)) {
+	public ResponseEntity<String>  insertTecnico (@RequestBody Tecnico tecnico, String matricola) {
+		if(tecnicoRepository.existsByMatricola(matricola)) {
 			return new ResponseEntity<String>("Tecnico già esistente", HttpStatus.NOT_ACCEPTABLE);
 		} else {
 			tecnicoRepository.save(tecnico);
@@ -45,14 +45,14 @@ public class TecnicoController {
 	}
 	
 	@PutMapping
-	public ResponseEntity<String> updateTecnico ( @RequestBody Tecnico tecnico, String nome, String cognome) {
-		if(tecnicoRepository.existsByNome(nome)) {
-			Tecnico tecnicoEsistente = tecnicoRepository.findByNome(nome);
+	public ResponseEntity<String> updateTecnico ( @RequestBody Tecnico tecnico, String matricola) {
+		if(tecnicoRepository.existsByMatricola(matricola)) {
+			Tecnico tecnicoEsistente = tecnicoRepository.findByMatricola(matricola);
 			BeanUtils.copyProperties(tecnico, tecnicoEsistente);
 			tecnicoRepository.save(tecnicoEsistente);
-			return new ResponseEntity<String> ("Tecnico " + nome + " " + cognome + " aggiornato", HttpStatus.OK);
+			return new ResponseEntity<String> ("Tecnico " + matricola + " aggiornato", HttpStatus.OK);
 		} else {
-			return new ResponseEntity<String> ("Utente " + nome + " " + cognome + " non trovato" , HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String> ("Utente " + matricola + " non trovato" , HttpStatus.NOT_FOUND);
 		}
 	}
 }
