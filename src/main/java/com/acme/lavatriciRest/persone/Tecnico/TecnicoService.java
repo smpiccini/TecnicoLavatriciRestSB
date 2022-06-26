@@ -4,4 +4,6 @@ public interface TecnicoService {
 	
 	Tecnico inserisciTecnico (InserisciTecnicoRequest dto);
 	
+	Tecnico getTecnico(InserisciTecnicoRequest dto);
+	
 }

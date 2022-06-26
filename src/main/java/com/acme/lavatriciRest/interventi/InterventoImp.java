@@ -31,6 +31,8 @@ public abstract class InterventoImp implements Intervento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
+	@Column(length = 20, nullable = false)
+	private String codiceIntervento;
 	@Column(length = 100, nullable = false)
 	private String descrizione;
 	@Column(nullable = false)

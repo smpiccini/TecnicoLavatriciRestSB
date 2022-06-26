@@ -28,14 +28,14 @@ public class Tecnico extends PersonaImp {
 	
 	private String matricola;
 
-	//@ToString.Exclude
+	@ToString.Exclude
 	@JsonIgnoreProperties({"tecnico"})
 	@OneToMany(mappedBy = "tecnico")
 	private List<InterventoImp> interventi= new ArrayList<InterventoImp>();
 	
 	public Tecnico(long id, String nome, String cognome, String matricola) {
 		super(id, nome, cognome);
-
+		this.matricola = matricola;
 	}
 
 }

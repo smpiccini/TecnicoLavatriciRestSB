@@ -5,19 +5,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.acme.lavatriciRest.interventi.riparazioni.InserisciRiparazioneConTecnicoRequest;
-import com.acme.lavatriciRest.interventi.riparazioni.InserisciSoloRiparazioneRequeste;
+import com.acme.lavatriciRest.interventi.riparazioni.InserisciSoloRiparazioneRequest;
 import com.acme.lavatriciRest.interventi.riparazioni.Riparazione;
 import com.acme.lavatriciRest.interventi.riparazioni.RiparazioneRepository;
-import com.acme.lavatriciRest.interventi.sostituzioni.InserisciSoloSostituzioneRequeste;
+import com.acme.lavatriciRest.interventi.sostituzioni.InserisciSoloSostituzioneRequest;
 import com.acme.lavatriciRest.interventi.sostituzioni.InserisciSostituzioneConTecnicoRequest;
 import com.acme.lavatriciRest.interventi.sostituzioni.Sostituzione;
 import com.acme.lavatriciRest.interventi.sostituzioni.SostituzioneRepository;
-import com.acme.lavatriciRest.interventi.verifiche.InserisciSoloVerificaRequeste;
+import com.acme.lavatriciRest.interventi.verifiche.InserisciSoloVerificaRequest;
 import com.acme.lavatriciRest.interventi.verifiche.InserisciVerificaConTecnicoRequest;
 import com.acme.lavatriciRest.interventi.verifiche.Verifica;
 import com.acme.lavatriciRest.interventi.verifiche.VerificaRepository;
+import com.acme.lavatriciRest.persone.Tecnico.InserisciTecnicoRequest;
 import com.acme.lavatriciRest.persone.Tecnico.Tecnico;
-import com.acme.lavatriciRest.persone.Tecnico.TecnicoRepository;
+import com.acme.lavatriciRest.persone.Tecnico.TecnicoService;
 
 @Service
 public class InterventoServiceImp implements InterventoService {
@@ -30,20 +31,18 @@ public class InterventoServiceImp implements InterventoService {
 	VerificaRepository verificaRepo;
 	
 	@Autowired
-	TecnicoRepository tecnicoRepo;
+	TecnicoService tecnicoService;
 	
 	@Override
-	public InterventoImp inserisciIntervento(InserisciSoloRiparazioneRequeste dto) {
+	public InterventoImp inserisciIntervento(InserisciSoloRiparazioneRequest dto) {
 		Riparazione rip = new Riparazione();
 		BeanUtils.copyProperties(dto, rip);
 		riparazioneRepo.save(rip);
-		
-		
 		return rip;
 	}
 
 	@Override
-	public InterventoImp inserisciIntervento(InserisciSoloSostituzioneRequeste dto) {
+	public InterventoImp inserisciIntervento(InserisciSoloSostituzioneRequest dto) {
 		Sostituzione sos = new Sostituzione();
 		BeanUtils.copyProperties(dto, sos);
 		sostituzioneRepo.save(sos);		
@@ -51,7 +50,7 @@ public class InterventoServiceImp implements InterventoService {
 	}
 
 	@Override
-	public InterventoImp inserisciIntervento(InserisciSoloVerificaRequeste dto) {
+	public InterventoImp inserisciIntervento(InserisciSoloVerificaRequest dto) {
 		Verifica ver = new Verifica();
 		BeanUtils.copyProperties(dto, ver);
 		verificaRepo.save(ver);		
@@ -60,60 +59,69 @@ public class InterventoServiceImp implements InterventoService {
 
 	@Override
 	public InterventoImp inserisciIntervento(InserisciRiparazioneConTecnicoRequest dto) {
-		Tecnico tc;
-		if(tecnicoRepo.existsByMatricola(dto.getMatricola())) {
-			tc=tecnicoRepo.findByMatricola(dto.getMatricola());
-		}else {
-			tc=new Tecnico();
-			BeanUtils.copyProperties(dto, tc);
-			tecnicoRepo.save(tc);
-		}
+		InserisciTecnicoRequest tecDto = new InserisciTecnicoRequest();
+		BeanUtils.copyProperties(dto, tecDto);
+		Tecnico tc = tecnicoService.inserisciTecnico(tecDto);
+		
 		Riparazione rip= new Riparazione();
 		BeanUtils.copyProperties(dto, rip);
 		rip.setTecnico(tc);
 		riparazioneRepo.save(rip);
-		tc.getInterventi().add(rip);
 		return rip;
 	}
 
 	@Override
 	public InterventoImp inserisciIntervento(InserisciVerificaConTecnicoRequest dto) {
-		Tecnico tc;
-		if(tecnicoRepo.existsByMatricola(dto.getMatricola())) {
-			tc=tecnicoRepo.findByMatricola(dto.getMatricola());
-		}else {
-			tc=new Tecnico();
-			BeanUtils.copyProperties(dto, tc);
-			tecnicoRepo.save(tc);
-		}
+		InserisciTecnicoRequest tecDto = new InserisciTecnicoRequest();
+		BeanUtils.copyProperties(dto, tecDto);
+		Tecnico tc = tecnicoService.inserisciTecnico(tecDto);
+		
 		Verifica ver= new Verifica();
 		BeanUtils.copyProperties(dto, ver);
 		ver.setTecnico(tc);
 		verificaRepo.save(ver);
-		tc.getInterventi().add(ver);
 		return ver;
 	}
 
 	@Override
 	public InterventoImp inserisciIntervento(InserisciSostituzioneConTecnicoRequest dto) {
-		Tecnico tc;
-		if(tecnicoRepo.existsByMatricola(dto.getMatricola())) {
-			tc=tecnicoRepo.findByMatricola(dto.getMatricola());
-		}else {
-			tc=new Tecnico();
-			BeanUtils.copyProperties(dto, tc);
-			tecnicoRepo.save(tc);
-		}
+		InserisciTecnicoRequest tecDto = new InserisciTecnicoRequest();
+		BeanUtils.copyProperties(dto, tecDto);
+		Tecnico tc = tecnicoService.inserisciTecnico(tecDto);
+		
 		Sostituzione sos= new Sostituzione();
 		BeanUtils.copyProperties(dto, sos);
 		sos.setTecnico(tc);
 		sostituzioneRepo.save(sos);
-		tc.getInterventi().add(sos);
+		//tc.getInterventi().add(sos);
 		return sos;
 	}
-
 	
+	@Override
+	public InterventoImp getIntervento(InserisciSoloRiparazioneRequest dto) {
+		InterventoImp inter = null;
+		if(riparazioneRepo.existsByCodiceIntervento(dto.getCodiceIntervento())) {
+			inter = riparazioneRepo.findByCodiceIntervento(dto.getCodiceIntervento());
+		}
+		return inter;
+	}
 	
+	@Override
+	public InterventoImp getIntervento(InserisciSoloSostituzioneRequest dto) {
+		InterventoImp inter = null;
+		if(sostituzioneRepo.existsByCodiceIntervento(dto.getCodiceIntervento())) {
+			inter = sostituzioneRepo.findByCodiceIntervento(dto.getCodiceIntervento());
+		}
+		return inter;
+	}
 	
+	@Override
+	public InterventoImp getIntervento(InserisciSoloVerificaRequest dto) {
+		InterventoImp inter = null;
+		if(verificaRepo.existsByCodiceIntervento(dto.getCodiceIntervento())) {
+			inter = verificaRepo.findByCodiceIntervento(dto.getCodiceIntervento());
+		}
+		return inter;
+	}
 	
 }

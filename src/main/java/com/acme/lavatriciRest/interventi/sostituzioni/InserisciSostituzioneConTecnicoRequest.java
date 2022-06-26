@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InserisciSostituzioneConTecnicoRequest {
+	private String codiceIntervento;
 	private String descrizione;
 	private double prezzo;
 	private String dataIntervento;

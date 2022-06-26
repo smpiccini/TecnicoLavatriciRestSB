@@ -1,4 +1,4 @@
-package com.acme.lavatriciRest.interventi.verifiche;
+package com.acme.lavatriciRest.interventi.riparazioni;
 
 import javax.persistence.Column;
 
@@ -8,10 +8,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class InserisciSoloVerificaRequeste {
+public class InserisciSoloRiparazioneRequest {
+	private String codiceIntervento;
 	private String descrizione;
 	private double prezzo;
 	private String dataIntervento;

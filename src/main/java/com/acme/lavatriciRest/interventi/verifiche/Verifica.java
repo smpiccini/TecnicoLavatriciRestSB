@@ -17,8 +17,8 @@ import lombok.NoArgsConstructor;
 public class Verifica extends InterventoImp {
 
 
-	public Verifica(long id, String descrizione, double prezzo, String dataIntervento, Tecnico tecnico, RapportinoImp rapportino) {
-		super(id, descrizione, prezzo, dataIntervento, tecnico, rapportino);
+	public Verifica(long id, String codiceIntervento, String descrizione, double prezzo, String dataIntervento, Tecnico tecnico, RapportinoImp rapportino) {
+		super(id, codiceIntervento, descrizione, prezzo, dataIntervento, tecnico, rapportino);
 		
 	}
 

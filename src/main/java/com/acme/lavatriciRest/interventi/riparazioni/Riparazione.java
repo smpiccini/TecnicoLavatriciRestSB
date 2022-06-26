@@ -17,9 +17,9 @@ import lombok.NoArgsConstructor;
 @Table(name = "riparazioni")
 public class Riparazione extends InterventoImp {
 
-	public Riparazione(long id, String descrizione, double prezzo, 
+	public Riparazione(long id, String codiceIntervento, String descrizione, double prezzo, 
 			String dataIntervento, Tecnico tecnico, RapportinoImp rapportino) {
-		super(id, descrizione, prezzo, dataIntervento, tecnico, rapportino);
+		super(id, codiceIntervento, descrizione, prezzo, dataIntervento, tecnico, rapportino);
 	}
 	
 

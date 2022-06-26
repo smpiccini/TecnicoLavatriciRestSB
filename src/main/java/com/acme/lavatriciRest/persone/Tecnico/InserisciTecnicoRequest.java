@@ -8,10 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InserisciTecnicoRequest {
-
 	private String matricola;
 	private String nome;
 	private String cognome;
-	private String dataIntervento;
-	private String descrizione;
 }

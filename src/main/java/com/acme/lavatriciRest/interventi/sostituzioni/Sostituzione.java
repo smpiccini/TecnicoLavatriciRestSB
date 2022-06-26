@@ -18,8 +18,8 @@ import lombok.NoArgsConstructor;
 public class Sostituzione extends InterventoImp {
  private int numeroPezzi;
 
-	public Sostituzione(long id, String descrizione, double prezzo, String dataIntervento, Tecnico tecnico, RapportinoImp rapportino, int numeroPezzi) {
-		super(id, descrizione, prezzo, dataIntervento, tecnico, rapportino);
+	public Sostituzione(long id, String codiceIntervento, String descrizione, double prezzo, String dataIntervento, Tecnico tecnico, RapportinoImp rapportino, int numeroPezzi) {
+		super(id, codiceIntervento, descrizione, prezzo, dataIntervento, tecnico, rapportino);
 		this.numeroPezzi=numeroPezzi;
 
 	}

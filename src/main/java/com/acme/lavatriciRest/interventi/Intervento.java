@@ -5,6 +5,8 @@ import com.acme.lavatriciRest.persone.Tecnico.Tecnico;
 public interface Intervento {
 
 	String getDataIntervento();
+	
+	String getCodiceIntervento();
 
 	String getDescrizione();
 
@@ -15,6 +17,8 @@ public interface Intervento {
 	Tecnico getTecnico();
 
 	void setDataIntervento(String dataIntervento);
+	
+	void setCodiceIntervento(String codiceIntervento);
 
 	void setDescrizione(String descrizione);
 

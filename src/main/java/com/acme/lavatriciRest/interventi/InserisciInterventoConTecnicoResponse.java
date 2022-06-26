@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class InserisciInterventoETecnicoResponse {
+public class InserisciInterventoConTecnicoResponse {
 	private String nome;
 	private String cognome;
 	private String matricola;

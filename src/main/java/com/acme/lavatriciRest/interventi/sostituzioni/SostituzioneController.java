@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.acme.lavatriciRest.interventi.InserisciInterventoETecnicoResponse;
+import com.acme.lavatriciRest.interventi.InserisciInterventoConTecnicoResponse;
 import com.acme.lavatriciRest.interventi.InterventoImp;
 import com.acme.lavatriciRest.interventi.InterventoService;
 
@@ -20,7 +20,7 @@ public class SostituzioneController {
 	private InterventoService interventoService;
 	
 	@PostMapping("/soloSostituzion")
-	public ResponseEntity<?> inserisciIntervento (@RequestBody InserisciSoloSostituzioneRequeste dto){
+	public ResponseEntity<?> inserisciIntervento (@RequestBody InserisciSoloSostituzioneRequest dto){
 		interventoService.inserisciIntervento(dto);
 		return ResponseEntity.ok("Sostituzione aggiunta");
 		
@@ -28,7 +28,7 @@ public class SostituzioneController {
 	@PostMapping
 	public ResponseEntity<?> inserisciIntervento (@RequestBody InserisciSostituzioneConTecnicoRequest dto) {
 		InterventoImp inter= interventoService.inserisciIntervento(dto);
-		InserisciInterventoETecnicoResponse resp= new InserisciInterventoETecnicoResponse();
+		InserisciInterventoConTecnicoResponse resp= new InserisciInterventoConTecnicoResponse();
 		
 		BeanUtils.copyProperties(inter.getTecnico(), resp);
 		resp.setInterventiEffettuati(inter.getTecnico().getInterventi());

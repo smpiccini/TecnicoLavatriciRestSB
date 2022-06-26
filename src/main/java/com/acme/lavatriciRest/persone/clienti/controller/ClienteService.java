@@ -8,6 +8,6 @@ public interface ClienteService {
 	ClienteImp inserisciCliente(InserisciClienteFisicoRequest dto);
 	ClienteImp inserisciCliente(InserisciClienteGiuridicoRequest dto);
 	
-	ClienteImp getClienteFisico(InserisciClienteFisicoRequest dto);
-	ClienteImp getClienteGiuridico(InserisciClienteGiuridicoRequest dto);
+	ClienteImp getClienteFisico(String codiceFiscale);
+	ClienteImp getClienteGiuridico(String partitaIva);
 }

@@ -1,9 +1,7 @@
 package com.acme.lavatriciRest.persone.clienti.controller;
 
-import java.util.Optional;
-
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.acme.lavatriciRest.persone.clienti.ClienteFisico;
@@ -40,6 +38,7 @@ public class ClienteServiceImp implements ClienteService {
 		return cli;
 	}
 	
+	@Override
 	public ClienteImp inserisciCliente(InserisciClienteGiuridicoRequest dto) {
 		ClienteGiuridico cli;
 		if(clienteGiuridicoRepo.existsByPartitaIva(dto.getPartitaIva())) {
@@ -54,19 +53,20 @@ public class ClienteServiceImp implements ClienteService {
 		return cli;
 	}
 	
-	public ClienteImp getClienteFisico(InserisciClienteFisicoRequest dto) {
+	@Override
+	public ClienteImp getClienteFisico(String codiceFiscale) {
 		ClienteImp cli = null;
-		if(clienteFisicoRepo.existsByCodiceFiscale(dto.getCodiceFiscale())) {
-			cli = clienteFisicoRepo.findByCodiceFiscale(dto.getCodiceFiscale());
+		if(clienteFisicoRepo.existsByCodiceFiscale(codiceFiscale)) {
+			cli = clienteFisicoRepo.findByCodiceFiscale(codiceFiscale);
 		}
 		return cli;
 	}
 
 	@Override
-	public ClienteImp getClienteGiuridico(InserisciClienteGiuridicoRequest dto) {
+	public ClienteImp getClienteGiuridico(String partitaIva) {
 		ClienteImp cli = null;
-		if(clienteGiuridicoRepo.existsByPartitaIva(dto.getPartitaIva())) {
-			cli = clienteGiuridicoRepo.findByPartitaIva(dto.getPartitaIva());
+		if(clienteGiuridicoRepo.existsByPartitaIva(partitaIva)) {
+			cli = clienteGiuridicoRepo.findByPartitaIva(partitaIva);
 		}
 		return cli;
 	}
