@@ -23,7 +23,7 @@ private InterventoService interventoService;
 
 @PostMapping("/soloVerifica")
 public ResponseEntity<?> inserisciIntervento (@RequestBody InserisciSoloVerificaRequest dto){
-	InterventoImp inter = interventoService.getIntervento(dto);
+	InterventoImp inter = interventoService.getInterventoVerifica(dto.getCodiceIntervento());
 	HttpStatus status;
 	if (inter != null) {
 		status = HttpStatus.NOT_ACCEPTABLE;
@@ -38,18 +38,17 @@ public ResponseEntity<?> inserisciIntervento (@RequestBody InserisciSoloVerifica
 }
 @PostMapping
 public ResponseEntity<?> inserisciIntervento (@RequestBody InserisciVerificaConTecnicoRequest dto) {
-	InterventoImp inter= interventoService.getIntervento(dto);
+	InterventoImp inter= interventoService.getInterventoVerifica(dto.getCodiceIntervento());
 	HttpStatus status;
 	if (inter !=null) {
 		status = HttpStatus.NOT_ACCEPTABLE;
 	} else {
-		inter = interventoService.inserisciIntervento(dto);
+		inter = interventoService.inserisciInterventoConTecnico(dto);
 		status = HttpStatus.OK;
 	}
 	InserisciInterventoConTecnicoResponse resp= new InserisciInterventoConTecnicoResponse();
-	
-	BeanUtils.copyProperties(inter.getTecnico(), resp);
-	resp.setInterventiEffettuati(inter.getTecnico().getInterventi());
+	resp.setIdIntervento(inter.getId());
+	resp.setIdTecnico(inter.getTecnico().getId());
 	return ResponseEntity.ok(resp);
 }
 }

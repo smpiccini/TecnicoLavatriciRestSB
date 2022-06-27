@@ -11,13 +11,13 @@ public interface InterventoService {
 	InterventoImp inserisciIntervento(InserisciSoloRiparazioneRequest dto);
 	InterventoImp inserisciIntervento(InserisciSoloSostituzioneRequest dto);
 	InterventoImp inserisciIntervento(InserisciSoloVerificaRequest dto);
-	InterventoImp inserisciIntervento(InserisciRiparazioneConTecnicoRequest dto);
-	InterventoImp inserisciIntervento(InserisciVerificaConTecnicoRequest dto);
-	InterventoImp inserisciIntervento(InserisciSostituzioneConTecnicoRequest dto);
+	InterventoImp inserisciInterventoConTecnico(InserisciRiparazioneConTecnicoRequest dto);
+	InterventoImp inserisciInterventoConTecnico(InserisciVerificaConTecnicoRequest dto);
+	InterventoImp inserisciInterventoConTecnico(InserisciSostituzioneConTecnicoRequest dto);
 	
-	InterventoImp getIntervento(InserisciSoloRiparazioneRequest dto);
-	InterventoImp getIntervento(InserisciSoloSostituzioneRequest dto);
-	InterventoImp getIntervento(InserisciSoloVerificaRequest dto);
+	InterventoImp getInterventoRiparazione(String codiceIntervento);
+	InterventoImp getInterventoSostituzione(String codiceIntervento);
+	InterventoImp getInterventoVerifica(String codiceIntervento);
 	
 	
 

@@ -10,13 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InserisciInterventoConTecnicoResponse {
-	private String nome;
-	private String cognome;
-	private String matricola;
-	
-	
-	private List<InterventoImp> interventiEffettuati;
-	
-	
-
+	private long idIntervento;
+	private long idTecnico;
 }

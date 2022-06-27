@@ -23,7 +23,7 @@ public class SostituzioneController {
 	
 	@PostMapping("/soloSostituzioni")
 	public ResponseEntity<?> inserisciIntervento (@RequestBody InserisciSoloSostituzioneRequest dto){
-		InterventoImp inter=interventoService.getIntervento(dto);
+		InterventoImp inter=interventoService.getInterventoSostituzione(dto.getCodiceIntervento());
 		HttpStatus status;
 		if (inter != null) {
 			status = HttpStatus.NOT_ACCEPTABLE;
@@ -40,11 +40,19 @@ public class SostituzioneController {
 		
 	@PostMapping
 	public ResponseEntity<?> inserisciIntervento (@RequestBody InserisciSostituzioneConTecnicoRequest dto) {
-		InterventoImp inter= interventoService.inserisciIntervento(dto);
+		InterventoImp inter= interventoService.getInterventoSostituzione(dto.getCodiceIntervento());
+		HttpStatus status;
+		if (inter !=null) {
+			status = HttpStatus.NOT_ACCEPTABLE;
+		} else {
+			inter = interventoService.inserisciInterventoConTecnico(dto);
+			status = HttpStatus.OK;
+		}
 		InserisciInterventoConTecnicoResponse resp= new InserisciInterventoConTecnicoResponse();
 		
 		BeanUtils.copyProperties(inter.getTecnico(), resp);
-		resp.setInterventiEffettuati(inter.getTecnico().getInterventi());
+		resp.setIdIntervento(inter.getId());
+		resp.setIdTecnico(inter.getTecnico().getId());
 		return ResponseEntity.ok(resp);
 	}
 }

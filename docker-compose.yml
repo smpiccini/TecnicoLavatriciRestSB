@@ -1,0 +1,37 @@
+services:
+  db:
+    image: 'postgres:14.1-alpine'
+    container_name: db
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=sam124
+      - POSTGRES_DB=lavatrici_db
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+  app:
+    image: 'docker-spring-boot-postgres:latest'
+    depends_on:
+      - db
+    build: ./
+    restart: on-failure
+    container_name: app
+    ports: 
+      - '8080:8080'
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.jpa.properties.hibernate.dialect":"org.hibernate.dialect.PostgreSQL92Dialect",
+        "spring.datasource.url":"jdbc:postgresql://db:5432/lavatrici_db",
+        "spring.datasource.username":"postgres",
+        "spring.datasource.password":"sam124",
+        "spring.datasource.driverClassName":"org.postgresql.Driver",
+        "spring.jpa.hibernate.ddl-auto":"create"  
+        }' 
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+    tty: true
+volumes:
+  db:

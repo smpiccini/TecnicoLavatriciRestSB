@@ -10,6 +10,4 @@ import lombok.NoArgsConstructor;
 public class InserisciRapportinoConClienteResponse {
 	private long idCliente;
 	private long idRapportino;
-	
-
 }

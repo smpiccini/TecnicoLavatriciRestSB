@@ -17,21 +17,6 @@ import com.acme.lavatriciRest.persone.clienti.ClienteGiuridicoRepository;
 @RequestMapping("/rapportini")
 public class RapportinoController {
 	
-	/*
-	@Autowired
-	private ClienteFisicoRepository ClienteFisRepo;
-	
-	@Autowired
-	private ClienteGiuridicoRepository ClienteGiuRepo;
-	
-	@Autowired
-	private TecnicoRepository TecnicoRepo;
-	*/
-	
-	
-	@Autowired
-	private RapportinoRepository RapportinoRepo;
-	
 	@Autowired
 	RapportinoService rapportinoService;
 	

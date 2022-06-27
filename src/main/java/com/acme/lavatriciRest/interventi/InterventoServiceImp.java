@@ -58,7 +58,7 @@ public class InterventoServiceImp implements InterventoService {
 	}
 
 	@Override
-	public InterventoImp inserisciIntervento(InserisciRiparazioneConTecnicoRequest dto) {
+	public InterventoImp inserisciInterventoConTecnico(InserisciRiparazioneConTecnicoRequest dto) {
 		InserisciTecnicoRequest tecDto = new InserisciTecnicoRequest();
 		BeanUtils.copyProperties(dto, tecDto);
 		Tecnico tc = tecnicoService.inserisciTecnico(tecDto);
@@ -72,7 +72,7 @@ public class InterventoServiceImp implements InterventoService {
 	}
 
 	@Override
-	public InterventoImp inserisciIntervento(InserisciVerificaConTecnicoRequest dto) {
+	public InterventoImp inserisciInterventoConTecnico(InserisciVerificaConTecnicoRequest dto) {
 		InserisciTecnicoRequest tecDto = new InserisciTecnicoRequest();
 		BeanUtils.copyProperties(dto, tecDto);
 		Tecnico tc = tecnicoService.inserisciTecnico(tecDto);
@@ -86,7 +86,7 @@ public class InterventoServiceImp implements InterventoService {
 	}
 
 	@Override
-	public InterventoImp inserisciIntervento(InserisciSostituzioneConTecnicoRequest dto) {
+	public InterventoImp inserisciInterventoConTecnico(InserisciSostituzioneConTecnicoRequest dto) {
 		InserisciTecnicoRequest tecDto = new InserisciTecnicoRequest();
 		BeanUtils.copyProperties(dto, tecDto);
 		Tecnico tc = tecnicoService.inserisciTecnico(tecDto);
@@ -100,28 +100,28 @@ public class InterventoServiceImp implements InterventoService {
 	}
 	
 	@Override
-	public InterventoImp getIntervento(InserisciSoloRiparazioneRequest dto) {
+	public InterventoImp getInterventoRiparazione(String codiceIntervento) {
 		InterventoImp inter = null;
-		if(riparazioneRepo.existsByCodiceIntervento(dto.getCodiceIntervento())) {
-			inter = riparazioneRepo.findByCodiceIntervento(dto.getCodiceIntervento());
+		if(riparazioneRepo.existsByCodiceIntervento(codiceIntervento)) {
+			inter = riparazioneRepo.findByCodiceIntervento(codiceIntervento);
 		}
 		return inter;
 	}
 	
 	@Override
-	public InterventoImp getIntervento(InserisciSoloSostituzioneRequest dto) {
+	public InterventoImp getInterventoSostituzione(String codiceIntervento) {
 		InterventoImp inter = null;
-		if(sostituzioneRepo.existsByCodiceIntervento(dto.getCodiceIntervento())) {
-			inter = sostituzioneRepo.findByCodiceIntervento(dto.getCodiceIntervento());
+		if(sostituzioneRepo.existsByCodiceIntervento(codiceIntervento)) {
+			inter = sostituzioneRepo.findByCodiceIntervento(codiceIntervento);
 		}
 		return inter;
 	}
 	
 	@Override
-	public InterventoImp getIntervento(InserisciSoloVerificaRequest dto) {
+	public InterventoImp getInterventoVerifica(String codiceIntervento) {
 		InterventoImp inter = null;
-		if(verificaRepo.existsByCodiceIntervento(dto.getCodiceIntervento())) {
-			inter = verificaRepo.findByCodiceIntervento(dto.getCodiceIntervento());
+		if(verificaRepo.existsByCodiceIntervento(codiceIntervento)) {
+			inter = verificaRepo.findByCodiceIntervento(codiceIntervento);
 		}
 		return inter;
 	}

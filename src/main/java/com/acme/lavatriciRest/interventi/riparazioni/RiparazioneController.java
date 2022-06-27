@@ -27,7 +27,7 @@ public class RiparazioneController {
 	@PostMapping("/soloIntervento")
 	public ResponseEntity<?> inserisciIntervento 
 		(@RequestBody InserisciSoloRiparazioneRequest dto){
-		InterventoImp inter = interventoService.getIntervento(dto);
+		InterventoImp inter = interventoService.getInterventoRiparazione(dto.getCodiceIntervento());
 		HttpStatus status;
 		if (inter != null) {
 			status = HttpStatus.NOT_ACCEPTABLE;
@@ -42,11 +42,19 @@ public class RiparazioneController {
 		
 	@PostMapping
 	public ResponseEntity<?> inserisciIntervento (@RequestBody InserisciRiparazioneConTecnicoRequest dto) {
-		InterventoImp inter= interventoService.inserisciIntervento(dto);
+		InterventoImp inter= interventoService.getInterventoRiparazione(dto.getCodiceIntervento());
+		HttpStatus status;
+		if (inter !=null) {
+			status = HttpStatus.NOT_ACCEPTABLE;
+		} else {
+			inter = interventoService.inserisciInterventoConTecnico(dto);
+			status = HttpStatus.OK;
+		}
 		InserisciInterventoConTecnicoResponse resp= new InserisciInterventoConTecnicoResponse();
 		
 		BeanUtils.copyProperties(inter.getTecnico(), resp);
-		resp.setInterventiEffettuati(inter.getTecnico().getInterventi());
+		resp.setIdIntervento(inter.getId());
+		resp.setIdTecnico(inter.getTecnico().getId());
 		return ResponseEntity.ok(resp);
 	}
 	
